@@ -399,8 +399,8 @@ ARM Macro Assembler    Page 7
               00000000 
 Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M0 --apcs=interw
 ork --depend=stm32f0_braille_v1.0\startup_stm32f051x8.d -ostm32f0_braille_v1.0\
-startup_stm32f051x8.o -ID:\งาน\บริษัท\อักษรเบล\STM32F0_BRAILLE_V1.0\MDK-ARM\RTE
- -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\Include -IC:\Keil_v5\ARM\PAC
+startup_stm32f051x8.o -IC:\Users\bongkot-bpg\Desktop\STM32F0_BRAILLE_V1.0\MDK-A
+RM\RTE -IC:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include -IC:\Keil_v5\ARM\PAC
 K\Keil\STM32F0xx_DFP\1.5.0\Device\Include --predefine="__MICROLIB SETA 1" --pre
 define="__UVISION_VERSION SETA 518" --predefine="_RTE_ SETA 1" --predefine="STM
 32F051x8 SETA 1" --list=startup_stm32f051x8.lst startup_stm32f051x8.s

@@ -1,0 +1,4 @@
+C:\Users\bongkot-bpg\Documents\Visual Studio 2010\Projects\BLESerial\BLESerial\bin\x64\Debug\BLESerial.exe
+C:\Users\bongkot-bpg\Documents\Visual Studio 2010\Projects\BLESerial\BLESerial\bin\x64\Debug\BLESerial.pdb
+C:\Users\bongkot-bpg\Documents\Visual Studio 2010\Projects\BLESerial\BLESerial\obj\x64\Debug\BLESerial.exe
+C:\Users\bongkot-bpg\Documents\Visual Studio 2010\Projects\BLESerial\BLESerial\obj\x64\Debug\BLESerial.pdb

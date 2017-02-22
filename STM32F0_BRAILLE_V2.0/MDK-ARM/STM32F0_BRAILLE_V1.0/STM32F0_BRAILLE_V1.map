@@ -61,6 +61,7 @@ Section Cross References
     main.o(i.main) refers to memseta.o(.text) for __aeabi_memclr
     main.o(i.main) refers to print_debug.o(i.print_init) for print_init
     main.o(i.main) refers to stm32f0xx_hal_gpio.o(i.HAL_GPIO_WritePin) for HAL_GPIO_WritePin
+    main.o(i.main) refers to stm32f0xx_hal.o(i.HAL_Delay) for HAL_Delay
     main.o(i.main) refers to print_debug.o(i.print_debug) for print_debug
     main.o(i.main) refers to braille.o(i.Braille_receivePacket) for Braille_receivePacket
     main.o(i.main) refers to main.o(i.manag_sw) for manag_sw
@@ -1538,22 +1539,22 @@ Image Symbol Table
     _sputc                                   0x08004d8d   Thumb Code    10  printfa.o(i._sputc)
     i.assert_failed                          0x08004d96   Section        0  main.o(i.assert_failed)
     i.main                                   0x08004d98   Section        0  main.o(i.main)
-    i.manag_sw                               0x08004e88   Section        0  main.o(i.manag_sw)
-    i.print_debug                            0x08004eec   Section        0  print_debug.o(i.print_debug)
-    i.print_hex_ascii_line                   0x08004f2c   Section        0  print_debug.o(i.print_hex_ascii_line)
-    print_hex_ascii_line                     0x08004f2d   Thumb Code   168  print_debug.o(i.print_hex_ascii_line)
-    i.print_init                             0x08004ff0   Section        0  print_debug.o(i.print_init)
-    i.print_payload                          0x08004ffc   Section        0  print_debug.o(i.print_payload)
-    i.uart1_callback                         0x0800508c   Section        0  uart1_manag.o(i.uart1_callback)
-    i.uart1_flush                            0x08005100   Section        0  uart1_manag.o(i.uart1_flush)
-    i.uart1_read                             0x08005110   Section        0  uart1_manag.o(i.uart1_read)
-    i.uart1_write                            0x080051e8   Section        0  uart1_manag.o(i.uart1_write)
-    i.uart2_callback                         0x08005208   Section        0  uart2_manag.o(i.uart2_callback)
-    .constdata                               0x0800527c   Section       32  braille_process_1.o(.constdata)
-    .constdata                               0x0800529c   Section       16  stm32f0xx_hal_rcc.o(.constdata)
-    .constdata                               0x080052ac   Section      129  ctype_o.o(.constdata)
-    .constdata                               0x08005330   Section        4  ctype_o.o(.constdata)
-    table                                    0x08005330   Data           4  ctype_o.o(.constdata)
+    i.manag_sw                               0x08004ed4   Section        0  main.o(i.manag_sw)
+    i.print_debug                            0x08004f38   Section        0  print_debug.o(i.print_debug)
+    i.print_hex_ascii_line                   0x08004f78   Section        0  print_debug.o(i.print_hex_ascii_line)
+    print_hex_ascii_line                     0x08004f79   Thumb Code   168  print_debug.o(i.print_hex_ascii_line)
+    i.print_init                             0x0800503c   Section        0  print_debug.o(i.print_init)
+    i.print_payload                          0x08005048   Section        0  print_debug.o(i.print_payload)
+    i.uart1_callback                         0x080050d8   Section        0  uart1_manag.o(i.uart1_callback)
+    i.uart1_flush                            0x0800514c   Section        0  uart1_manag.o(i.uart1_flush)
+    i.uart1_read                             0x0800515c   Section        0  uart1_manag.o(i.uart1_read)
+    i.uart1_write                            0x08005234   Section        0  uart1_manag.o(i.uart1_write)
+    i.uart2_callback                         0x08005254   Section        0  uart2_manag.o(i.uart2_callback)
+    .constdata                               0x080052c8   Section       32  braille_process_1.o(.constdata)
+    .constdata                               0x080052e8   Section       16  stm32f0xx_hal_rcc.o(.constdata)
+    .constdata                               0x080052f8   Section      129  ctype_o.o(.constdata)
+    .constdata                               0x0800537c   Section        4  ctype_o.o(.constdata)
+    table                                    0x0800537c   Data           4  ctype_o.o(.constdata)
     .data                                    0x20000000   Section        4  system_stm32f0xx.o(.data)
     .data                                    0x20000004   Section        6  main.o(.data)
     .data                                    0x2000000c   Section        4  stm32f0xx_hal.o(.data)
@@ -1735,20 +1736,20 @@ Image Symbol Table
     __scatterload_null                       0x080044ed   Thumb Code     2  handlers.o(i.__scatterload_null)
     __scatterload_zeroinit                   0x080044ef   Thumb Code    14  handlers.o(i.__scatterload_zeroinit)
     assert_failed                            0x08004d97   Thumb Code     2  main.o(i.assert_failed)
-    main                                     0x08004d99   Thumb Code   184  main.o(i.main)
-    manag_sw                                 0x08004e89   Thumb Code    66  main.o(i.manag_sw)
-    print_debug                              0x08004eed   Thumb Code    60  print_debug.o(i.print_debug)
-    print_init                               0x08004ff1   Thumb Code     6  print_debug.o(i.print_init)
-    print_payload                            0x08004ffd   Thumb Code   116  print_debug.o(i.print_payload)
-    uart1_callback                           0x0800508d   Thumb Code    76  uart1_manag.o(i.uart1_callback)
-    uart1_flush                              0x08005101   Thumb Code    12  uart1_manag.o(i.uart1_flush)
-    uart1_read                               0x08005111   Thumb Code   184  uart1_manag.o(i.uart1_read)
-    uart1_write                              0x080051e9   Thumb Code    26  uart1_manag.o(i.uart1_write)
-    uart2_callback                           0x08005209   Thumb Code    84  uart2_manag.o(i.uart2_callback)
-    aAPBAHBPrescTable                        0x0800529c   Data          16  stm32f0xx_hal_rcc.o(.constdata)
-    __ctype_table                            0x080052ac   Data         129  ctype_o.o(.constdata)
-    Region$$Table$$Base                      0x08005334   Number         0  anon$$obj.o(Region$$Table)
-    Region$$Table$$Limit                     0x08005354   Number         0  anon$$obj.o(Region$$Table)
+    main                                     0x08004d99   Thumb Code   254  main.o(i.main)
+    manag_sw                                 0x08004ed5   Thumb Code    66  main.o(i.manag_sw)
+    print_debug                              0x08004f39   Thumb Code    60  print_debug.o(i.print_debug)
+    print_init                               0x0800503d   Thumb Code     6  print_debug.o(i.print_init)
+    print_payload                            0x08005049   Thumb Code   116  print_debug.o(i.print_payload)
+    uart1_callback                           0x080050d9   Thumb Code    76  uart1_manag.o(i.uart1_callback)
+    uart1_flush                              0x0800514d   Thumb Code    12  uart1_manag.o(i.uart1_flush)
+    uart1_read                               0x0800515d   Thumb Code   184  uart1_manag.o(i.uart1_read)
+    uart1_write                              0x08005235   Thumb Code    26  uart1_manag.o(i.uart1_write)
+    uart2_callback                           0x08005255   Thumb Code    84  uart2_manag.o(i.uart2_callback)
+    aAPBAHBPrescTable                        0x080052e8   Data          16  stm32f0xx_hal_rcc.o(.constdata)
+    __ctype_table                            0x080052f8   Data         129  ctype_o.o(.constdata)
+    Region$$Table$$Base                      0x08005380   Number         0  anon$$obj.o(Region$$Table)
+    Region$$Table$$Limit                     0x080053a0   Number         0  anon$$obj.o(Region$$Table)
     SystemCoreClock                          0x20000000   Data           4  system_stm32f0xx.o(.data)
     status_sw                                0x20000004   Data           6  main.o(.data)
     huart_intstanc                           0x20000010   Data           4  print_debug.o(.data)
@@ -1772,9 +1773,9 @@ Memory Map of the image
 
   Image Entry point : 0x080000bd
 
-  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x00005374, Max: 0x00010000, ABSOLUTE)
+  Load Region LR_IROM1 (Base: 0x08000000, Size: 0x000053c0, Max: 0x00010000, ABSOLUTE)
 
-    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x00005354, Max: 0x00010000, ABSOLUTE)
+    Execution Region ER_IROM1 (Base: 0x08000000, Size: 0x000053a0, Max: 0x00010000, ABSOLUTE)
 
     Base Addr    Size         Type   Attr      Idx    E Section Name        Object
 
@@ -1912,23 +1913,23 @@ Memory Map of the image
     0x08004d60   0x0000002c   Code   RO         3211    i._printf_pre_padding  mc_p.l(printfa.o)
     0x08004d8c   0x0000000a   Code   RO         3213    i._sputc            mc_p.l(printfa.o)
     0x08004d96   0x00000002   Code   RO          271    i.assert_failed     main.o
-    0x08004d98   0x000000f0   Code   RO          272    i.main              main.o
-    0x08004e88   0x00000064   Code   RO          273    i.manag_sw          main.o
-    0x08004eec   0x00000040   Code   RO         2982    i.print_debug       print_debug.o
-    0x08004f2c   0x000000c4   Code   RO         2983    i.print_hex_ascii_line  print_debug.o
-    0x08004ff0   0x0000000c   Code   RO         2984    i.print_init        print_debug.o
-    0x08004ffc   0x00000090   Code   RO         2985    i.print_payload     print_debug.o
-    0x0800508c   0x00000074   Code   RO         3029    i.uart1_callback    uart1_manag.o
-    0x08005100   0x00000010   Code   RO         3030    i.uart1_flush       uart1_manag.o
-    0x08005110   0x000000d8   Code   RO         3031    i.uart1_read        uart1_manag.o
-    0x080051e8   0x00000020   Code   RO         3032    i.uart1_write       uart1_manag.o
-    0x08005208   0x00000074   Code   RO         3070    i.uart2_callback    uart2_manag.o
-    0x0800527c   0x00000020   Data   RO          140    .constdata          braille_process_1.o
-    0x0800529c   0x00000010   Data   RO         1906    .constdata          stm32f0xx_hal_rcc.o
-    0x080052ac   0x00000081   Data   RO         3163    .constdata          mc_p.l(ctype_o.o)
-    0x0800532d   0x00000003   PAD
-    0x08005330   0x00000004   Data   RO         3164    .constdata          mc_p.l(ctype_o.o)
-    0x08005334   0x00000020   Data   RO         3270    Region$$Table       anon$$obj.o
+    0x08004d98   0x0000013c   Code   RO          272    i.main              main.o
+    0x08004ed4   0x00000064   Code   RO          273    i.manag_sw          main.o
+    0x08004f38   0x00000040   Code   RO         2982    i.print_debug       print_debug.o
+    0x08004f78   0x000000c4   Code   RO         2983    i.print_hex_ascii_line  print_debug.o
+    0x0800503c   0x0000000c   Code   RO         2984    i.print_init        print_debug.o
+    0x08005048   0x00000090   Code   RO         2985    i.print_payload     print_debug.o
+    0x080050d8   0x00000074   Code   RO         3029    i.uart1_callback    uart1_manag.o
+    0x0800514c   0x00000010   Code   RO         3030    i.uart1_flush       uart1_manag.o
+    0x0800515c   0x000000d8   Code   RO         3031    i.uart1_read        uart1_manag.o
+    0x08005234   0x00000020   Code   RO         3032    i.uart1_write       uart1_manag.o
+    0x08005254   0x00000074   Code   RO         3070    i.uart2_callback    uart2_manag.o
+    0x080052c8   0x00000020   Data   RO          140    .constdata          braille_process_1.o
+    0x080052e8   0x00000010   Data   RO         1906    .constdata          stm32f0xx_hal_rcc.o
+    0x080052f8   0x00000081   Data   RO         3163    .constdata          mc_p.l(ctype_o.o)
+    0x08005379   0x00000003   PAD
+    0x0800537c   0x00000004   Data   RO         3164    .constdata          mc_p.l(ctype_o.o)
+    0x08005380   0x00000020   Data   RO         3270    Region$$Table       anon$$obj.o
 
 
     Execution Region RW_IRAM1 (Base: 0x20000000, Size: 0x00000ab8, Max: 0x00002000, ABSOLUTE)
@@ -1954,29 +1955,29 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   Object Name
 
-       782        276          0          0          0       4724   braille.o
-       380         48         32          0          0       1023   braille_process_1.o
-      1090        152          0          6       1688       6745   main.o
-       416         66          0          4          0       4204   print_debug.o
-        28          8        188          0       1024        588   startup_stm32f051x8.o
-       124         14          0          4          0       3746   stm32f0xx_hal.o
-      2070        214          0          0          0       5394   stm32f0xx_hal_adc.o
-       498        208          0          0          0      10847   stm32f0xx_hal_cortex.o
-       992        182          0          0          0       3191   stm32f0xx_hal_gpio.o
-       412         44          0          0          0       2850   stm32f0xx_hal_msp.o
-      3040        228         16          0          0       5765   stm32f0xx_hal_rcc.o
-       528         78          0          0          0       1424   stm32f0xx_hal_rcc_ex.o
-      2490        222          0          0          0       9819   stm32f0xx_hal_tim.o
-       324         82          0          0          0       2438   stm32f0xx_hal_tim_ex.o
-      2768        242          0          0          0      10547   stm32f0xx_hal_uart.o
-       336          0          0          0          0       1778   stm32f0xx_hal_uart_ex.o
-       144         24          0          0          0       4200   stm32f0xx_it.o
-       116         12          0          4          0     219041   system_stm32f0xx.o
-       380         82          0          5          0       2908   uart1_manag.o
-       116         32          0          5          0       1107   uart2_manag.o
+       782        276          0          0          0       4528   braille.o
+       380         48         32          0          0        995   braille_process_1.o
+      1166        158          0          6       1688       6473   main.o
+       416         66          0          4          0       4036   print_debug.o
+        28          8        188          0       1024        592   startup_stm32f051x8.o
+       124         14          0          4          0       3550   stm32f0xx_hal.o
+      2070        214          0          0          0       5198   stm32f0xx_hal_adc.o
+       498        208          0          0          0      10623   stm32f0xx_hal_cortex.o
+       992        182          0          0          0       3079   stm32f0xx_hal_gpio.o
+       412         44          0          0          0       2710   stm32f0xx_hal_msp.o
+      3040        228         16          0          0       5569   stm32f0xx_hal_rcc.o
+       528         78          0          0          0       1368   stm32f0xx_hal_rcc_ex.o
+      2490        222          0          0          0       9427   stm32f0xx_hal_tim.o
+       324         82          0          0          0       2326   stm32f0xx_hal_tim_ex.o
+      2768        242          0          0          0      10155   stm32f0xx_hal_uart.o
+       336          0          0          0          0       1694   stm32f0xx_hal_uart_ex.o
+       144         24          0          0          0       3948   stm32f0xx_it.o
+       116         12          0          4          0     218649   system_stm32f0xx.o
+       380         82          0          5          0       2740   uart1_manag.o
+       116         32          0          5          0       1023   uart2_manag.o
 
     ----------------------------------------------------------------------
-     17046       2214        268         32       2712     302339   Object Totals
+     17122       2220        268         32       2712     298683   Object Totals
          0          0         32          0          0          0   (incl. Generated)
         12          0          0          4          0          0   (incl. Padding)
 
@@ -2035,15 +2036,15 @@ Image component sizes
 
       Code (inc. data)   RO Data    RW Data    ZI Data      Debug   
 
-     20928       2358        404         32       2712     299355   Grand Totals
-     20928       2358        404         32       2712     299355   ELF Image Totals
-     20928       2358        404         32          0          0   ROM Totals
+     21004       2364        404         32       2712     295699   Grand Totals
+     21004       2364        404         32       2712     295699   ELF Image Totals
+     21004       2364        404         32          0          0   ROM Totals
 
 ==============================================================================
 
-    Total RO  Size (Code + RO Data)                21332 (  20.83kB)
+    Total RO  Size (Code + RO Data)                21408 (  20.91kB)
     Total RW  Size (RW Data + ZI Data)              2744 (   2.68kB)
-    Total ROM Size (Code + RO Data + RW Data)      21364 (  20.86kB)
+    Total ROM Size (Code + RO Data + RW Data)      21440 (  20.94kB)
 
 ==============================================================================
 

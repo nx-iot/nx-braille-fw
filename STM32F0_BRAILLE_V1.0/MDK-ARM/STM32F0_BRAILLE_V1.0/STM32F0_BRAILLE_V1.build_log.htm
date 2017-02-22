@@ -5,7 +5,7 @@
 <h2>Tool Versions:</h2>
 IDE-Version: µVision V5.18.0.0
 Copyright (C) 2016 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: oat Microsoft, Microsoft, LIC=YA3TG-V9UV9-DWG2I-T3MBH-6HJEX-MD8UY
+License Information: bk Microsoft, Microsoft, LIC=QF8WF-6QXZY-GJP6P-M9GPH-KADNA-W1DDP
  
 Tool Versions:
 Toolchain:       MDK-ARM Standard  Version: 5.18
@@ -21,30 +21,108 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.18.0
 Dialog DLL:      TARMCM1.DLL V1.9.0.0
  
 <h2>Project:</h2>
-D:\ß“π\∫√‘…—∑\Õ—°…√‡∫≈\STM32F0_BRAILLE_V1.0\MDK-ARM\STM32F0_BRAILLE_V1.0.uvprojx
+C:\Users\bongkot-bpg\Desktop\STM32F0_BRAILLE_V1.0\MDK-ARM\STM32F0_BRAILLE_V1.0.uvprojx
 Project File Date:  09/14/2016
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 1 (build 61)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'STM32F0_BRAILLE_V1.0'
-"STM32F0_BRAILLE_V1.0\STM32F0_BRAILLE_V1.0" - 0 Error(s), 0 Warning(s).
+compiling main.c...
+..\nx_libs\inc\main.h(27): warning:  #1-D: last line of file ends without a newline
+  #endif 
+..\nx_libs\inc\print_debug.h(29): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\nx_libs\inc\uart1_manag.h(9): warning:  #1295-D: Deprecated declaration uart1_callback - give arg types
+  void uart1_callback();
+..\nx_libs\inc\uart1_manag.h(12): warning:  #1295-D: Deprecated declaration uart1_flush - give arg types
+  void uart1_flush();
+..\nx_libs\inc\uart1_manag.h(14): warning:  #1295-D: Deprecated declaration uart1_callback - give arg types
+  extern void uart1_callback();
+..\nx_libs\inc\uart1_manag.h(16): warning:  #1-D: last line of file ends without a newline
+  #endif 
+..\nx_libs\inc\uart2_manag.h(9): warning:  #1295-D: Deprecated declaration uart2_callback - give arg types
+  void uart2_callback();
+..\nx_libs\inc\uart2_manag.h(13): warning:  #1295-D: Deprecated declaration uart2_callback - give arg types
+  extern void uart2_callback();
+..\nx_libs\inc\uart2_manag.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif 
+..\nx_libs\inc\main.h(27): warning:  #1-D: last line of file ends without a newline
+  #endif 
+..\nx_libs\inc\Braille.h(7): warning:  #1-D: last line of file ends without a newline
+  int Braille_checksum(char buf[],int len);
+../Src/main.c(110): warning:  #188-D: enumerated type mixed with another type
+  	HAL_GPIO_WritePin(
+PIOC, 
+PIO_PIN_3,0);
+../Src/main.c(111): warning:  #188-D: enumerated type mixed with another type
+  	HAL_GPIO_WritePin(
+PIOC, 
+lock_Pin, 0); //clock
+../Src/main.c(112): warning:  #188-D: enumerated type mixed with another type
+  	HAL_GPIO_WritePin(
+atch_pin_GPIO_Port, 
+atch_pin_Pin, 1);
+../Src/main.c(113): warning:  #188-D: enumerated type mixed with another type
+  	HAL_GPIO_WritePin(
+atch_pin_GPIO_Port, 
+atch_pin_Pin, 0);
+../Src/main.c(115): warning:  #188-D: enumerated type mixed with another type
+  					HAL_GPIO_WritePin(
+PIOC, 
+PIO_PIN_3,0);//data
+../Src/main.c(116): warning:  #188-D: enumerated type mixed with another type
+  					HAL_GPIO_WritePin(
+PIOC, 
+lock_Pin, 1); //clock
+../Src/main.c(118): warning:  #188-D: enumerated type mixed with another type
+  					HAL_GPIO_WritePin(
+PIOC, 
+lock_Pin, 0); //clock
+../Src/main.c(122): warning:  #188-D: enumerated type mixed with another type
+  				HAL_GPIO_WritePin(
+atch_pin_GPIO_Port, 
+atch_pin_Pin, 1);
+../Src/main.c(177): warning:  #188-D: enumerated type mixed with another type
+  				HAL_GPIO_WritePin(
+atch_pin_GPIO_Port, 
+atch_pin_Pin, 0);
+../Src/main.c(180): warning:  #188-D: enumerated type mixed with another type
+  					HAL_GPIO_WritePin(
+PIOC, 
+PIO_PIN_3,order[i]);//data
+../Src/main.c(181): warning:  #188-D: enumerated type mixed with another type
+  					HAL_GPIO_WritePin(
+PIOC, 
+lock_Pin, 1); //clock
+../Src/main.c(183): warning:  #188-D: enumerated type mixed with another type
+  					HAL_GPIO_WritePin(
+PIOC, 
+lock_Pin, 0); //clock
+../Src/main.c(187): warning:  #188-D: enumerated type mixed with another type
+  				HAL_GPIO_WritePin(
+atch_pin_GPIO_Port, 
+atch_pin_Pin, 1);
+../Src/main.c: 24 warnings, 0 errors
+linking...
+Program Size: Code=20200 RO-data=404 RW-data=32 ZI-data=2712  
+"STM32F0_BRAILLE_V1.0\STM32F0_BRAILLE_V1.0" - 0 Error(s), 24 Warning(s).
 
 <h2>Software Packages used:</h2>
 
 Package Vendor: ARM
-                http://www.keil.com/pack/ARM.CMSIS.5.0.0-Beta4.pack
-                ARM::CMSIS:CORE:5.0.0
+                http://www.keil.com/pack/ARM.CMSIS.4.5.0.pack
+                ARM::CMSIS:CORE:4.3.0
                 CMSIS (Cortex Microcontroller Software Interface Standard)
-   * Component: CORE Version: 5.0.0
+   * Component: CORE Version: 4.3.0
 
 <h2>Collection of Component include folders:</h2>
-  D:\ß“π\∫√‘…—∑\Õ—°…√‡∫≈\STM32F0_BRAILLE_V1.0\MDK-ARM\RTE
-  C:\Keil_v5\ARM\PACK\ARM\CMSIS\5.0.0-Beta4\CMSIS\Include
+  C:\Users\bongkot-bpg\Desktop\STM32F0_BRAILLE_V1.0\MDK-ARM\RTE
+  C:\Keil_v5\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include
   C:\Keil_v5\ARM\PACK\Keil\STM32F0xx_DFP\1.5.0\Device\Include
 
 <h2>Collection of Component Files used:</h2>
 
-   * Component: ARM::CMSIS:CORE:5.0.0
+   * Component: ARM::CMSIS:CORE:4.3.0
 Build Time Elapsed:  00:00:01
 </pre>
 </body>

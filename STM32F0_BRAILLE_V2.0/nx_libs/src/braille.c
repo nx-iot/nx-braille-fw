@@ -136,7 +136,7 @@ int Braille_sendAPI(char *frame, int lenght, int timeout) {
                               
     
     sendPacket[0] = 0x7E;                                                               // Start Delimeter
-    //sendPacket[1] = (lenght >> 8) & 0xFF;                                               // Braille Packet Length  - msb
+    //sendPacket[1] = (lenght >> 8) & 0xFF;                                               // Xbee Packet Length  - msb
     sendPacket[1] = 0x07;                                                      //                     - lsb
 		sendPacket[2] = cmd;  
     memcpy(&sendPacket[3], frame, lenght);

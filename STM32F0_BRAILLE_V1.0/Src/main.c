@@ -110,6 +110,17 @@ int main(void)
 	HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3,0);
 	HAL_GPIO_WritePin(GPIOC, clock_Pin, 0); //clock
 	HAL_GPIO_WritePin(latch_pin_GPIO_Port, latch_pin_Pin, 1);
+	HAL_GPIO_WritePin(latch_pin_GPIO_Port, latch_pin_Pin, 0);
+	for(int i=23;i>=0;i--){ //15(2)
+		HAL_GPIO_WritePin(GPIOC, GPIO_PIN_3,0);//data
+		HAL_GPIO_WritePin(GPIOC, clock_Pin, 1); //clock
+		HAL_Delay(1);
+		HAL_GPIO_WritePin(GPIOC, clock_Pin, 0); //clock
+		HAL_Delay(1);
+	}
+	print_debug(0,"\n");			
+	HAL_GPIO_WritePin(latch_pin_GPIO_Port, latch_pin_Pin, 1);
+				
 	print_debug(0,"****** Start Program ******\n");
   while (1)
   {

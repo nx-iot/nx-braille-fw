@@ -3,7 +3,7 @@
 <title>Static Call Graph - [STM32F0_BRAILLE_V1.0\STM32F0_BRAILLE_V1.0]</title></head>
 <body><HR>
 <H1>Static Call Graph for image STM32F0_BRAILLE_V1.0\STM32F0_BRAILLE_V1.0</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Mon Sep 19 15:03:03 2016
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060061: Last Updated: Mon Dec 26 13:41:42 2016
 <BR><P>
 <H3>Maximum Stack Usage =        880 bytes + Unknown(Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -448,6 +448,7 @@ Global Symbols
 <BR>[Calls]<UL><LI><a href="#[53]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GetTick
 </UL>
 <BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;manag_sw
+<LI><a href="#[23]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Braille_data
 </UL>
 
@@ -949,13 +950,14 @@ Global Symbols
 <LI><a href="#[7d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;UART_AdvFeatureConfig
 </UL>
 
-<P><STRONG><a name="[23]"></a>main</STRONG> (Thumb, 184 bytes, Stack size 0 bytes, main.o(i.main))
+<P><STRONG><a name="[23]"></a>main</STRONG> (Thumb, 264 bytes, Stack size 0 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 880<LI>Call Chain = main &rArr; Braille_data &rArr; print_payload &rArr; print_hex_ascii_line &rArr; print_debug &rArr; HAL_UART_Transmit &rArr; UART_WaitOnFlagUntilTimeout
 </UL>
 <BR>[Calls]<UL><LI><a href="#[92]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_init
 <LI><a href="#[41]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;print_debug
 <LI><a href="#[55]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Init
 <LI><a href="#[43]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_GPIO_WritePin
+<LI><a href="#[40]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;HAL_Delay
 <LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;manag_sw
 <LI><a href="#[87]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;SystemClock_Config
 <LI><a href="#[3d]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;Braille_data
