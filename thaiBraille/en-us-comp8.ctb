@@ -1,0 +1,169 @@
+# liblouis: U.S. English 8 dot Computer braille table
+#
+#  Copyright (C) 2004-2008 ViewPlus Technologies, Inc. www.viewplus.com
+#  Copyright (C) 2004-2006 JJB Software, Inc. www.jjb-software.com
+#  Copyright (C) 2012 Mesar Hameed <mesar.hameed@gmail.com>
+#
+#  This file is part of liblouis.
+#
+#  liblouis is free software: you can redistribute it and/or modify it
+#  under the terms of the GNU Lesser General Public License as
+#  published by the Free Software Foundation, either version 2.1 of the
+#  License, or (at your option) any later version.
+#
+#  liblouis is distributed in the hope that it will be useful, but
+#  WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU
+#  Lesser General Public License for more details.
+#
+#  You should have received a copy of the GNU Lesser General Public
+#  License along with liblouis. If not, see
+#  <http://www.gnu.org/licenses/>.
+
+space \t 9 tab
+space \s 0 blank
+space \x00a0 a unbreakable space
+sign \x000a 78 newline
+space \x000d 0 carriage return
+include loweredDigits6Dots.uti
+include latinLetterDef8Dots.uti
+punctuation , 6
+punctuation ; 56
+punctuation : 156
+punctuation . 46
+punctuation ! 2346
+punctuation " 5
+punctuation ' 3
+punctuation ( 12356
+punctuation ) 23456
+punctuation - 36
+sign _ 456
+math < 126
+math = 123456
+math > 345
+sign % 146
+math + 346
+math ~ 45
+sign ` 4
+sign & 12346
+sign $ 1246
+punctuation ? 1456
+punctuation { 246
+punctuation [ 2467
+punctuation } 12456
+punctuation ] 124567
+sign ^ 457
+sign @ 47
+sign # 3456
+sign \\ 12567
+sign | 1256
+math / 34
+sign * 16
+
+###############################################################################
+# Thai Brailler Charector
+# The document is dated 1954, so this table may be quite outdated.
+
+# consonants
+uppercase \x0e00 0
+uppercase \x0e01 1245
+uppercase \x0e02 346
+uppercase \x0e03 2346
+uppercase \x0e04 136
+uppercase \x0e05 6-136
+uppercase \x0e06 36-136
+uppercase \x0e07 12456
+uppercase \x0e08 245
+uppercase \x0e09 34
+uppercase \x0e0a 13
+uppercase \x0e0b 36-13
+uppercase \x0e0c 6-346
+uppercase \x0e0d 6-13456
+uppercase \x0e0e 6-145
+uppercase \x0e0f 6-1256
+uppercase \x0e10 6-2345
+uppercase \x0e11 6-23456
+uppercase \x0e12 56-23456
+uppercase \x0e13 6-1345
+uppercase \x0e14 145
+uppercase \x0e15 1256
+uppercase \x0e16 2345
+uppercase \x0e17 23456
+uppercase \x0e18 356-23456
+uppercase \x0e19 1345
+uppercase \x0e1a 1236
+uppercase \x0e1b 12346
+uppercase \x0e1c 1234
+uppercase \x0e1d 1346
+uppercase \x0e1e 1456
+uppercase \x0e1f 1246
+uppercase \x0e20 6-1456
+uppercase \x0e21 134
+uppercase \x0e22 13456
+uppercase \x0e23 1235
+uppercase \x0e24 1235-2
+uppercase \x0e25 123
+uppercase \x0e26 123-2
+uppercase \x0e27 2456
+uppercase \x0e28 6-234
+uppercase \x0e29 36-234
+uppercase \x0e2a 234
+uppercase \x0e2b 125
+uppercase \x0e2c 36-123
+uppercase \x0e2d 135
+uppercase \x0e2e 123456
+uppercase \x0e2f 0
+
+# vowels
+uppercase \x0e30 1
+uppercase \x0e31 15
+uppercase \x0e32 16
+uppercase \x0e33 1356
+uppercase \x0e34 12
+uppercase \x0e35 23
+uppercase \x0e36 246
+uppercase \x0e37 26
+uppercase \x0e38 14
+uppercase \x0e39 25
+uppercase \x0e3a 0
+uppercase \x0e3b 0
+uppercase \x0e3c 0
+uppercase \x0e3d 0
+uppercase \x0e3e 0
+uppercase \x0e3f 0
+uppercase \x0e40 124
+uppercase \x0e41 126
+uppercase \x0e42 24
+uppercase \x0e43 156-1
+uppercase \x0e44 156
+uppercase \x0e45 0
+uppercase \x0e46 2
+uppercase \x0e47 6
+uppercase \x0e48 35
+uppercase \x0e49 256
+uppercase \x0e4a 2356
+uppercase \x0e4b 236
+uppercase \x0e4c 356
+uppercase \x0e4d 0
+uppercase \x0e4e 0
+uppercase \x0e4f 0
+uppercase \x0e50 2458
+uppercase \x0e51 18
+uppercase \x0e52 128
+uppercase \x0e53 148
+uppercase \x0e54 1458
+uppercase \x0e55 158
+uppercase \x0e56 1248
+uppercase \x0e57 12458
+uppercase \x0e58 1258
+uppercase \x0e59 248
+uppercase \x0e5a 0
+uppercase \x0e5b 0
+uppercase \x0e5c 0
+uppercase \x0e5d 0
+uppercase \x0e5e 0
+uppercase \x0e5f 0
+
+################################################################
+
+
