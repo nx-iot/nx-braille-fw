@@ -13,12 +13,26 @@ from logHandler import log
 import serial
 import struct
 import wx
-
+import languageHandler
+import hwIo
+import _winreg
 
 READ_INTERVAL = 50
 TIMEOUT = 0.1
 
+BLUETOOTH_NAMES = ("ThaiBraille",)
 
+BLUETOOTH_ADDRS = (
+	# (first, last),
+	(0x0025EC000000, 0x0025EC01869F), # Apex
+)
+USB_IDS = frozenset((
+	"VID_1C71&PID_C004", # Apex
+	))
+
+BAUD_RATE = 38400
+TIMEOUT = 0.1
+READ_INTERVAL = 50
 
 class thaiTypes:
 	TTHAI_NO_DISPLAY = 0
@@ -114,21 +128,102 @@ class BrailleDisplayDriver(braille.BrailleDisplayDriver):
 	def check(cls):
 		return True
 
+	
+	
+	@classmethod
+	def _getUSBPorts(cls):
+		return (p["port"] for p in hwPortUtils.listComPorts()
+				if p["hardwareID"].startswith("USB\\")
+				# and any(p["hardwareID"][4:].startswith(id) for id in USB_IDS))
+
+	#@classmethod
+	#def _getHIDPorts(cls):
+		# HID.
+	#	for portInfo in hwPortUtils.listHidDevices():
+	#		if portInfo.get("usbID") == "VID_1C71&PID_C006":
+	#			yield "USB HID", portInfo["devicePath"]
+		# In Windows 10, the Bluetooth vendor and product ids don't get recognised.
+		# Use strings instead.
+	#		elif portInfo.get("manufacturer") == "Humanware" and portInfo.get("product") == "Brailliant HID":
+#				yield "Bluetooth HID", portInfo["devicePath"]
+
+	@classmethod
+	def _getBluetoothPorts(cls):
+		for p in hwPortUtils.listComPorts():
+			try:
+				addr = p["bluetoothAddress"]
+				name = p["bluetoothName"]
+			except KeyError:
+				continue
+			#if (any(first <= addr <= last for first, last in BLUETOOTH_ADDRS)
+			#		or any(name.startswith(prefix) for prefix in BLUETOOTH_NAMES)):
+			if(any(name.startswith(prefix) for prefix in BLUETOOTH_NAMES)):
+				yield p["port"]
+
 	@classmethod
 	def getPossiblePorts(cls):
 		ports = OrderedDict()
+		usb = bluetooth = False
+		# See if we have any USB ports available:
+		try:
+			cls._getUSBPorts().next()
+			usb = True
+		except StopIteration:
+			pass
+		# See if we have any bluetooth ports available:
+		try:
+			cls._getBluetoothPorts().next()
+			bluetooth = True
+		except StopIteration:
+			pass
+		#if usb or bluetooth:
+		#    	ports.update([cls.AUTOMATIC_PORT])
+		if usb:
+			ports["usb"] = "USB"
+		if bluetooth:
+			ports["bluetooth"] = "Bluetooth"
+
 		for p in hwPortUtils.listComPorts():
 			# Translators: Name of a serial communications port.
 			ports[p["port"]] = _("Serial: {portName}").format(portName=p["friendlyName"])
 		return ports
 
-	def __init__(self, port):
+	def __init__(self, port="auto"):
 		super(BrailleDisplayDriver, self).__init__()
-		
-		
+
 		self._port = (port)
+
+		if port == "usb":
+			portsToTry = self._getUSBPorts()
+		elif port == "bluetooth":
+			portsToTry = self._getBluetoothPorts()
+		else:
+			portsToTry = (port,)
+
+		found = False
+
+		for port in portsToTry:
+			log.debug("Checking port %s for a Thai Braille", port)
+			try:
+				#self._serial = serial.Serial(port, baudrate=38400,
+				 #timeout=TIMEOUT, writeTimeout=TIMEOUT, parity=serial.PARITY_NONE)
+				 self._dev = serial.Serial(port, baudrate = BAUD_RATE,  bytesize = serial.EIGHTBITS, parity = serial.PARITY_NONE, stopbits = serial.STOPBITS_ONE)
+			except serial.SerialException:
+				continue
+			# Check for cell information
+			if self._describe():
+				log.debug("Thai Braille found on %s with %d cells", port, 40)
+				found = True
+				break
+			else:
+				self._dev.close()
+		
+		
+		if not found:
+			raise RuntimeError("Can't find a braillenote device (port = %s)" % port)
+
 		# Try to open port
-		self._dev = serial.Serial(self._port, baudrate = 9600,  bytesize = serial.EIGHTBITS, parity = serial.PARITY_NONE, stopbits = serial.STOPBITS_ONE)
+		#self._dev = serial.Serial(self._port, baudrate = 38400,  bytesize = serial.EIGHTBITS, parity = serial.PARITY_NONE, stopbits = serial.STOPBITS_ONE)
 		# Use a longer timeout when waiting for initialisation.
 		self._dev.timeout = self._dev.writeTimeout = 2.7
 		self._thaiType  = thai_in_init(self._dev)
@@ -142,6 +237,25 @@ class BrailleDisplayDriver(braille.BrailleDisplayDriver):
 		# Start keyCheckTimer.
 		self._readTimer = wx.PyTimer(self._handleResponses)
 		self._readTimer.Start(READ_INTERVAL)
+
+		#for x in xrange(0,255):
+		#	log.info(chr(x))
+		
+		#for x in xrange(0,255):
+		#	log.info(chr(x))
+	def _describe(self):
+		log.debug("Writing sdescribe tag")
+		
+		
+		#self._serial.write(DESCRIBE_TAG)
+		# This seems always able to read the three bytes, but if someone complain it might be better to retry
+		#packet = self._serial.read(3)
+		#log.debug("Read %d bytes", len(packet))
+		#if len(packet) != 3 or packet[0] != chr(STATUS_TAG):
+		#	log.debug("Not a braillenote")
+		#	return False
+		#self._numCells = ord(packet[2])
+		return True
 
 	def terminate(self):
 		super(BrailleDisplayDriver, self).terminate()
@@ -175,29 +289,62 @@ class BrailleDisplayDriver(braille.BrailleDisplayDriver):
     
 	
 	def _handleResponse(self, command):
+		#log.info(command)
+		#get current Langue
+		languageHandler.setLanguage("Windows")
+		cur_lang=languageHandler.getLanguage()
+		log.info(cur_lang)
+
 		if(command[2] > 0x00 and command[9] > 0x00 ):
 			#Space + Braille Key Command
 			cmd_string = "".join("S%02x" % command[2])
 			log.info(cmd_string)
+			#try:
 			inputCore.manager.executeGesture(InputGestureKeys(cmd_string))
-		elif (command[4] > 0x00 ):
+			#except inputCore.NoInputGestureAction:
+			#	log.info("THAIBraille: No function associated with this Braille key {key}")
+				#pass
+		elif (command[3] > 0x00 ):
 			# Command Key
-			cmd_string = "".join("C%02x" % command[4])
+			cmd_string = "".join("C%02x" % command[3])
 			log.info(cmd_string)
+			#try:
 			inputCore.manager.executeGesture(InputGestureKeys(cmd_string))
+			#except inputCore.NoInputGestureAction:
+			#	log.info("THAIBraille: No function associated with this Braille key {key}")
+				#pass
 		elif (command[10] > 0x00 ):
 			# Allow Key
-			cmd_string = "".join("A%02x" % command[11])
+			cmd_string = "".join("A%02x" % command[10])
 			log.info(cmd_string)
+			#try:
 			inputCore.manager.executeGesture(InputGestureKeys(cmd_string))
-		elif (command[5] > 0x00 or command[6] > 0x00 or command[7] > 0x00 or command[8] > 0x00 or command[9] > 0x00):
+			#except inputCore.NoInputGestureAction:
+			#	log.info("THAIBraille: No function associated with this Braille key {key}")
+				#pass
+		elif (command[4] > 0x00):
+			#or command[5] > 0x00 or command[6] > 0x00 or command[7] > 0x00 or command[8] > 0x00):
 			# Allow Key
-			cmd_string = "".join("P%02x" % command[5]).join("%02x" % command[6]).join("%02x" % command[7]).join("%02x" % command[8]).join("%02x" % command[9])
+			cmd_string = "".join("R%02x" % command[4])
+			#.join("%02x" % command[5]).join("%02x" % command[6]).join("%02x" % command[7]).join("%02x" % command[8])
 			log.info(cmd_string)
-			inputCore.manager.executeGesture(InputGestureKeys(cmd_string))
+			#try:
+			inputCore.manager.executeGesture(InputGestureRouting(command[4]))
+			#except inputCore.NoInputGestureAction:
+			#	log.info("THAIBraille: No function associated with this Braille key {key}")
+				#pass
 		else:
-			#Routing
-			inputCore.manager.executeGesture(InputGestureRouting(command[2]))
+			#Braille key
+			if(command[2] > 0x00):
+				cmd_string = "".join("B%02x" % command[2])
+				log.info(cmd_string)
+			#try:
+				inputCore.manager.executeGesture(InputGestureKeys(cmd_string))
+			#	except inputCore.NoInputGestureAction:
+			#		log.info("THAIBraille: No function associated with this Braille key {key}")
+					#pass
+			else:
+				log.info("Invaile command")
 		return 0
 			
 		#if command in (THAI_KEY_STATUS1, THAI_KEY_STATUS2, THAI_KEY_STATUS3, THAI_KEY_STATUS4):
@@ -264,7 +411,17 @@ class BrailleDisplayDriver(braille.BrailleDisplayDriver):
 			"kb:tab": ("br(thaiBraille):S28"),
 			"kb:windows": ("br(thaiBraille):S81"),
 			"kb:windows+b": ("br(thaiBraille):F39"),
-			"kb:windows+d ": ("br(thaiBraille):C19")
+			"kb:windows+d ": ("br(thaiBraille):C19"),
+
+			"kb:a": ("br(thaiBraille):B01"),
+			"kb:0x0e01": ("br(thaiBraille):B02"),
+			"kb:c": ("br(thaiBraille):B03"),
+			"kb:0x0e02": ("br(thaiBraille):B04"),
+			"kb:e": ("br(thaiBraille):B05"),
+			"kb:0x0e03": ("br(thaiBraille):B06"),
+			"kb:g": ("br(thaiBraille):B07"),
+			"kb:0x0e04": ("br(thaiBraille):B08")
+
 
 		}
 	})
